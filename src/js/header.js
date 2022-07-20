@@ -1,4 +1,4 @@
-import activateLibraryView from "./MyLibraryView";
+import activateLibraryView from './MyLibraryView';
 
 const headerEl = document.querySelector('.header');
 const homeBtnEl = headerEl.querySelector('.js-home');
@@ -12,7 +12,9 @@ const searchBtn = headerEl.querySelector('.search__icon');
 const watchedBtnEl = headerEl.querySelector('.watched-button');
 const queueBtnEl = headerEl.querySelector('.queue-button');
 
-export const galleryContainerEl = document.querySelector('.js-main-container-list');
+export const galleryContainerEl = document.querySelector(
+  '.js-main-container-list'
+);
 
 headerEl.classList.add('header1');
 btnLibrary.classList.add('library');
@@ -33,7 +35,6 @@ function onInputElClick() {
   inputEl.classList.add('input-anime');
 }
 
-
 function onLogoBtnClick() {
   onHomeBtnClick();
 }
@@ -45,7 +46,6 @@ function onHomeBtnClick() {
   inputEl.classList.remove('js-is-hidden');
   btnHome.classList.remove('home');
   btnLibrary.classList.add('library');
-
 
   galleryContainerEl.classList.add('js-home-page');
   galleryContainerEl.classList.remove('js-library-page');
@@ -85,5 +85,42 @@ function onQueueBtnClick() {
   queueBtnEl.classList.add('accent');
   watchedBtnEl.classList.remove('blick');
   queueBtnEl.classList.add('blick');
+}
 
+const toggleSwitch = document.querySelector(
+  '.theme-switch input[type="checkbox"]'
+);
+
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
+// ---------------------
+
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('theme', 'dark'); //add this
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light'); //add this
+  }
+}
+
+const currentTheme = localStorage.getItem('theme')
+  ? localStorage.getItem('theme')
+  : null;
+
+if (currentTheme) {
+  document.documentElement.setAttribute('data-theme', currentTheme);
+
+  if (currentTheme === 'dark') {
+    toggleSwitch.checked = true;
+  }
 }
