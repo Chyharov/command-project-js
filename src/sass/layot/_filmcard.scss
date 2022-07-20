@@ -4,16 +4,16 @@
 
 .hero__box {
   width: 100%;
-  @include mq (mob) {
+  @include mq(mob) {
     height: 398px;
-     margin-bottom: 8px;
+    margin-bottom: 8px;
   }
-  @include mq (tab) {
+  @include mq(tab) {
     height: 455px;
   }
-  @include mq (desk) {
-  height: 574px;
-  margin-bottom: 12px;
+  @include mq(desk) {
+    height: 574px;
+    margin-bottom: 12px;
   }
 }
 
@@ -27,7 +27,6 @@
 
 .parameter__position {
   display: none;
-  
 }
 
 .about__film {
@@ -37,7 +36,7 @@
 .hero__title {
   margin-bottom: auto;
 
-  color: inherit;
+  color: var(--primaryTextColor);
   font-style: $base-font;
   font-weight: 500;
   font-size: 12px;
@@ -57,7 +56,7 @@
   align-items: baseline;
 }
 
-.hero__description--Item{
+.hero__description--Item {
   display: flex;
   align-content: stretch;
   justify-content: center;
@@ -69,7 +68,6 @@
 .hero__genres,
 .hero__date,
 .symbol {
-
   margin-bottom: 0;
 
   color: var(--accent-color);
@@ -82,13 +80,9 @@
   @include mq(desk) {
     font-size: 20px;
     line-height: 1.2;
-
   }
-
-
 }
 
 .hero__date {
   margin-left: 7px;
 }
-
