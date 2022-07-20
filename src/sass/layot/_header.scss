@@ -19,7 +19,7 @@
 
 body {
   background-color: var(--bg-color);
-  color: #fff;
+  color: var(--primaryTextColor);
 }
 
 h1 {
@@ -491,7 +491,7 @@ svg {
 }
 
 .slider {
-  background-color: #ccc;
+  background-color: #161625;
   bottom: 0;
   cursor: pointer;
   left: 0;
@@ -513,7 +513,7 @@ svg {
 }
 
 input:checked + .slider {
-  background-color: var(--bg-color);
+  background-color: #ccc;
 }
 
 input:checked + .slider:before {
