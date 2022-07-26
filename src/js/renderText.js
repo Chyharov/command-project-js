@@ -6,10 +6,7 @@ import placeholder from '../images/placeholder.png';
 import useSpinner from 'use-spinner';
 import 'use-spinner/assets/use-spinner.css';
 import { convertFilms } from './convertFilms';
-import {paginationWatched, paginationQueue} from './pagination';
-import {getWatchedMovies} from './MyLibraryView';
-import {renderLibraryMarkup} from './MyLibraryView';
-
+// import { pagination } from './pagination';
 
 export const api = new TheMovieDBApi();
 const mainListEl = document.querySelector('.js-home-page');
@@ -34,10 +31,11 @@ paginationTrending.on('afterMove', event => {
   const currentPage = event.page;
   renderTrendingPerPage(currentPage);
 });
+// const libraryListEl = document.querySelector('.js-gallery-page');
 
 export async function moveBtnFilmotekaToFirstPage() {
   api.page = 1;
-  // console.log(api.page);
+  console.log(api.page);
   if (!api.genresMap) {
     await api.getGenres();
   }
@@ -65,6 +63,7 @@ export async function renderFilmCard() {
   paginationTrending.reset(response.data.total_results);
   paginationTrending.movePageTo(api.page);
 
+
 }
 
 async function renderTrendingPerPage(page) {
@@ -73,9 +72,21 @@ async function renderTrendingPerPage(page) {
   renderFilmsList(response.data.results);
 }
 
-
 export async function renderFilmsList(films) {
-const convertedFilms = convertFilms(films);
+
+  // async function fetchPerPageWatched(page){
+  // api.page=page;
+  // const response=await api.getWatchedMovies()
+  // await renderFilmsList(response.data.results)
+  // }
+  // paginationWatched.on('afterMove', event => {
+  //   const currentPage = event.page;
+  //   fetchPerPageWatched(currentPage);
+  // });
+
+const convertedFilms = convertFilms(films)
+
+  // libraryListEl.innerHTML = '';
   const filmItemsMarkup = filmcard(convertedFilms);
   mainListEl.innerHTML = filmItemsMarkup;
 }

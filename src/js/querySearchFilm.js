@@ -2,6 +2,7 @@ import { TheMovieDBApi } from './fetchfilm';
 import filmcard from '../templates/filmcard.hbs';
 import Notiflix from 'notiflix';
 import placeholder from '../images/placeholder.png';
+// import {fetchPerPage} from './pagination';
 import { api } from './renderText';
 import Pagination from 'tui-pagination';
 import { convertFilms } from './convertFilms';
@@ -11,6 +12,15 @@ const inputEl = document.querySelector('.js-inputSearch');
 const mainListEl = document.querySelector('.js-home-page');
 const newApi = new TheMovieDBApi();
 
+// async function onInputChange() {
+//   newApi.setQuery(inputEl.value);
+//   const searchFilms = await newApi.fetchFilms();
+//   const filmArray = searchFilms.data.results;
+//   const FilmLi = filmcard(filmArray);
+//   mainListEl.innerHTML = FilmLi;
+// }
+
+// inputEl.addEventListener('input', onInputChange);
 
 let inputValue = '';
 inputEl.addEventListener('input', event => {
@@ -46,7 +56,9 @@ export async function fetchPerPage(page) {
   api.page = page;
 
   const response = await api.fetchFilms();
-  renderFilmList(response.data.results); 
+  renderFilmList(response.data.results);
+
+  // onInputChange();
   if (page === 1) pagination.reset(response.data.total_results);
   return response;
 }
@@ -71,6 +83,8 @@ function setGenresToCard(genre_ids) {
 }
 
 async function renderFilmList(films) {
+  // const filmArray = await responsePerPage.data.results;
+
   if (films.length === 0) {
     Notiflix.Notify.warning('Nothing found');
     return;
